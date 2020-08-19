@@ -44,7 +44,7 @@
                 </ul>
 
                 <!-- SEARCH FORM -->
-                <form class="form-inline ml-3">
+                {{-- <form class="form-inline ml-3">
                     <div class="input-group input-group-sm">
                         <input class="form-control form-control-navbar" type="search" placeholder="Search"
                             aria-label="Search">
@@ -54,7 +54,7 @@
                             </button>
                         </div>
                     </div>
-                </form>
+                </form> --}}
 
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
@@ -209,19 +209,19 @@
                                 </a>
                                 <ul class="nav nav-treeview">
                                     <li class="nav-item">
-                                        <a href="notas/todas"
+                                    <a href=" {{ route('uj.index') }} "
                                             class="{{ Request::path() === 'notas/todas' ? 'nav-link active' : 'nav-link' }}">
                                             <i class="fa fa-graduation-cap nav-icon"></i>
-                                            <p>Juzgados</p>
+                                            <p>Unidades Judiciales</p>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a href="notas/favoritas"
                                             class="{{ Request::path() === 'notas/favoritas' ? 'nav-link active' : 'nav-link' }}">
                                             <i class="fa fa-copy nav-icon"></i>
                                             <p>Materias</p>
                                         </a>
-                                    </li>
+                                    </li> --}}
                                    
                                 </ul>
                             </li>

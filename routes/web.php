@@ -12,9 +12,13 @@
 */
 
 
-
+use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::view('juzgados', 'juzgados.index');
+Route::get('/unidades',  function(){
+    return view('uj.index');
+})->name('uj.index');
+
+
