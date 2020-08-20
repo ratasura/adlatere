@@ -32,6 +32,8 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div id="app">
+        {{-- se incluye mensajes flash  --}}
+        @include('../mensajes.flash')  
         <div class="wrapper">
 
             <!-- Navbar -->

@@ -31,6 +31,9 @@ class UnidadJudicialComponent extends Component
             , 'direccion' => 'required', 'unidadjudicial' => 'required', 'materia' => 'required',
             'telefono' => 'required'
         ]);
+        
+        
+        
         $unidad  = UnidadJudicial::create([
             'provincia' => $this->provincia,
             'ciudad' => $this->ciudad,
@@ -40,8 +43,10 @@ class UnidadJudicialComponent extends Component
             'telefono' => $this->telefono
         ]);
         $this->edit($unidad->id);
-        session()->flash('message', 'Unidad Judicial guardada correctamente');
         $this->default();
+       // session()->flash('message', 'Unidad Judicial guardada correctamente');
+       return back()->with('success','Unidad Judicial creada satisfactoriamente !!');
+        
     }
     public function edit($id){
 
@@ -74,6 +79,7 @@ class UnidadJudicialComponent extends Component
         ]);
 
         $this->default();
+        return back()->with('success','Unidad Judicial editada satisfactoriamente !!');
 
 
     }
@@ -81,6 +87,7 @@ class UnidadJudicialComponent extends Component
     public function destroy($id){
 
         UnidadJudicial::destroy($id);
+        return back()->with('success','Unidad Judicial eliminada satisfactoriamente !!');
 
     }
 
