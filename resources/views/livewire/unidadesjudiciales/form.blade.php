@@ -1,4 +1,9 @@
 
+     @if (session()->has('message'))
+     <div class="alert alert-success">
+         {{ session('message') }}
+     </div>
+    @endif
     <div class="form-row">
       <div class="form-group col-md-6">
         <label >Provincia</label>

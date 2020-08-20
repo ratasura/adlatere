@@ -40,6 +40,8 @@ class UnidadJudicialComponent extends Component
             'telefono' => $this->telefono
         ]);
         $this->edit($unidad->id);
+        session()->flash('message', 'Unidad Judicial guardada correctamente');
+        $this->default();
     }
     public function edit($id){
 
