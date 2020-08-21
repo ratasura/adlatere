@@ -5,7 +5,7 @@
         @include("livewire.unidadesjudiciales.$view")    
     </div>
 
-    <div class="col-sm-6 ">
+    <div class="col-sm-9 ">
         @include('livewire.unidadesjudiciales.table')
     </div>
 </div>

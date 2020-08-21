@@ -21,4 +21,6 @@ Route::get('/unidades',  function(){
     return view('uj.index');
 })->name('uj.index');
 
+Route::resource('personas', 'PersonaController');
+
 
