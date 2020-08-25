@@ -227,8 +227,34 @@
                                    
                                 </ul>
                             </li>
+
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>Personas<i class="fas fa-angle-left right"></i></p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                    <a href=" {{ route('personas.listar') }} "
+                                            class="{{ Request::path() === 'notas/todas' ? 'nav-link active' : 'nav-link' }}">
+                                            <i class="fa fa-user nav-icon"></i>
+                                            <p>Clientes</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="notas/favoritas"
+                                            class="{{ Request::path() === 'notas/favoritas' ? 'nav-link active' : 'nav-link' }}">
+                                            <i class="fa fa-user-secret nav-icon"></i>
+                                            <p>Usuarios del Sistema</p>
+                                        </a>
+                                    </li>
+                                   
+                                </ul>
+                            </li>
+
+
                             <li class="nav-item">
-                                <a href="usuarios"
+                                <a href="{{ route('personas.listar') }} "
                                     class="{{ Request::path() === 'usuarios' ? 'nav-link active' : 'nav-link' }}">
                                     <i class="nav-icon fas fa-users"></i>
                                     <p>

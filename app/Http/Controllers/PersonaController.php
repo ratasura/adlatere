@@ -14,8 +14,8 @@ class PersonaController extends Controller
      */
     public function index()
     {
-        $personas = Persona::all();
-        return view('personas.index', compact('personas'));
+        $personas = Persona::get();
+        return $personas;
     }
 
     /**
@@ -25,7 +25,7 @@ class PersonaController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -58,7 +58,9 @@ class PersonaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $persona= Persona::findOrFail($id);
+        return $persona;
+
     }
 
     /**
@@ -70,7 +72,7 @@ class PersonaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -81,6 +83,7 @@ class PersonaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $persona= Persona::findOrFail($id);
+        $persona->delete();
     }
 }
