@@ -9,13 +9,16 @@
         {{-- <div class="col-xs-12">
             <h1 class="page-header">Listado de personas</h1>
         </div> --}}
-        <div class="col-sm-8">
-            <a href="#" class="btn btn-primary pull-right">Nueva Persona</a>
+        <div class="col-sm-12">
+            <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#create">
+                Nueva Persona
+            </a>
 
             <table class="table table-hover table-striped">
                 <thead>
                     <tr>
                         <th>Nombres</th>
+                        <th>Correo</th>
                         <th>Tipo Documento</th>
                         <th>Valor</th>
                         <th>Tipo Persona</th>
@@ -27,6 +30,7 @@
                 <tbody>
                     <tr v-for="persona in personas">
                         <td> @{{persona.nombres}} </td>
+                        <td> @{{persona.email}} </td>
                         <td>@{{persona.tipoDocumento}}</td>
                         <td>@{{persona.valorDocumento}}</td>
                         <td>@{{persona.tipoPersona}}</td>
@@ -39,15 +43,18 @@
                     </tr>
                 </tbody>
             </table>
+            {{-- modal para crear persona --}}
+            @include('personas.modalcrearpersona')
         </div>
         <div class="col-sm-4">
             <pre>
-                @{{ $data }}
+                {{-- @{{ $data }} --}}
             </pre>
         </div>
 
     </div>
 </div>
+
 
 
 

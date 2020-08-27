@@ -49723,7 +49723,20 @@ var app = new Vue({
     this.getPersonas();
   },
   data: {
-    personas: []
+    personas: [],
+    errors: [],
+    newtipoDocumento: '',
+    newvalorDocumento: '',
+    newnombres: '',
+    newemail: '',
+    newdireccion: '',
+    newtelefonoDomicilio: '',
+    newtelefonoCelular: '',
+    newtipoPersona: '',
+    newnombreComercial: '',
+    newrepresentanteLegal: '',
+    newestadoPersona: 0 // por defecto 0 es activa 1 es desactiva 
+
   },
   methods: {
     getPersonas: function getPersonas() {
@@ -49741,6 +49754,35 @@ var app = new Vue({
       var url = 'personas/' + persona.id;
       axios["delete"](url).then(function (response) {
         _this2.getPersonas();
+
+        toastr.warning('Eliminado correctamente');
+      });
+    },
+    createPersona: function createPersona() {
+      var _this3 = this;
+
+      var url = 'personas';
+      axios.post(url, {
+        tipoDocumento: this.newtipoDocumento,
+        valorDocumento: this.newvalorDocumento,
+        nombres: this.newnombres,
+        email: this.newemail,
+        direccion: this.newdireccion,
+        telefonoDomicilio: this.newtelefonoDomicilio,
+        telefonoCelular: this.newtelefonoCelular,
+        tipoPersona: this.newtipoPersona,
+        nombreComercial: this.newnombreComercial,
+        representanteLegal: this.newrepresentanteLegal,
+        estadoPersona: this.newestadoPersona
+      }).then(function (response) {
+        _this3.getPersonas();
+
+        _this3.newtipoDocumento = '', _this3.newvalorDocumento = '', _this3.newnombres = '', _this3.newemail = '', _this3.newdireccion = '', _this3.newtelefonoDomicilio = '', _this3.newtelefonoCelular = '', _this3.newtipoPersona = '', _this3.newnombreComercial = '', _this3.newrepresentanteLegal = '', _this3.newestadoPersona = 0, _this3.errors = [];
+        $('#create').modal('hide');
+        toastr.success('Perosna creada correctamente');
+      })["catch"](function (error) {
+        //this.errors = error.response.data
+        toastr.error('Ocurrió un error, revise los campos');
       });
     }
   }

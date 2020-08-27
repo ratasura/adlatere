@@ -27,7 +27,7 @@ class PersonaFormRequest extends FormRequest
             'tipoDocumento' =>'required|max:10',
             'valorDocumento'=>'required|max:13',
             'nombres'=>'required|max:50',
-            'email'=>'required|unique',
+            'email' => 'string|email|unique:users',
             'direccion'=>'max:100',
             'telefonoDomicilio'=>'max:100',
             'telefonoCelular'=>'required|max:13',

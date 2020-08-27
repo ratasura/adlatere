@@ -26,14 +26,18 @@
     <link href="{{ asset('dist/css/adminlte.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    {{-- TOASTR --}}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css">
+   @toastr_css
     <!-- INICIO DE LIFEWIRE -->
     @livewireStyles
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div id="app">
-        {{-- se incluye mensajes flash  --}}
+       {{-- se incluye mensajes flash  --}}
         @include('../mensajes.flash')  
+
         <div class="wrapper">
 
             <!-- Navbar -->
@@ -334,6 +338,11 @@
     </div>
 <!-- FIN DE LIFEWIRE-->
     @livewireScripts
+    @jquery
+    @toastr_js
+    @toastr_render
 </body>
+
+
 
 </html>

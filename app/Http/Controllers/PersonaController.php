@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PersonaFormRequest;
 use App\Persona;
 use Illuminate\Http\Request;
 
@@ -23,10 +24,10 @@ class PersonaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        
-    }
+    // public function create()
+    // {
+        // se elimina el create por que a vista la llamamos a traves de modal en el formaulario
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -34,9 +35,23 @@ class PersonaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PersonaFormRequest $request)
     {
-        //
+        // $this->validate($request, [
+        //     'tipoDocumento' =>'required|max:10',
+        //     'valorDocumento'=>'required|max:13',
+        //     'nombres'=>'required|max:50',
+        //     'email'=>'required|unique',
+        //     'direccion'=>'max:100',
+        //     'telefonoDomicilio'=>'max:100',
+        //     'telefonoCelular'=>'required|max:13',
+        //     'tipoPersona'=>'required|max:15',
+        //     'nombreComercial'=>'required|max:50',
+        //     'representanteLegal'=>'required|max:50',
+        //     'estadoPersona'=>'required',
+        // ]);
+        Persona::create( $request->all());
+        return;
     }
 
     /**
@@ -50,18 +65,6 @@ class PersonaController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $persona= Persona::findOrFail($id);
-        return $persona;
-
-    }
 
     /**
      * Update the specified resource in storage.

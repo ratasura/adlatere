@@ -21,7 +21,8 @@ Route::get('/unidades',  function(){
     return view('uj.index');
 })->name('uj.index');
 
-Route::resource('personas', 'PersonaController');
+Route::resource('personas', 'PersonaController', ['except' => 'show', 'create','edit']); // esos metodos se manejaran con vue o bootstrap
+// ruta para personas listar 
 Route::get('/personaslistar', function(){
     return view('personas.listar');
 })->name('personas.listar');
