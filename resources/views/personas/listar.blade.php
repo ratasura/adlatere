@@ -35,7 +35,7 @@
                         <td>@{{persona.valorDocumento}}</td>
                         <td>@{{persona.tipoPersona}}</td>
                         <td width="10px">
-                            <a href="#" class="btn btn-primary btn-sm">Editar</a>
+                            <a href="#" class="btn btn-primary btn-sm" v-on:click.prevent="editPersona(persona)">Editar</a>
                         </td>
                         <td width="10px">
                             <a href="#" class="btn btn-danger btn-sm" v-on:click.prevent="deletePersonas(persona)">Eiminar</a>
@@ -45,6 +45,7 @@
             </table>
             {{-- modal para crear persona --}}
             @include('personas.modalcrearpersona')
+            @include('personas.edit')
         </div>
         <div class="col-sm-4">
             <pre>

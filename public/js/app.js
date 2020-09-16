@@ -49725,6 +49725,20 @@ var app = new Vue({
   data: {
     personas: [],
     errors: [],
+    fillPersona: {
+      'id': '',
+      'tipoDocumento': '',
+      'valorDocumento': '',
+      'nombres': '',
+      'email': '',
+      'direccion': '',
+      'telefonoDomicilio': '',
+      'telefonoCelular': '',
+      'tipoPersona': '',
+      'nombreComercial': '',
+      'representanteLegal': '',
+      'estadoPersona': ''
+    },
     newtipoDocumento: '',
     newvalorDocumento: '',
     newnombres: '',
@@ -49747,21 +49761,71 @@ var app = new Vue({
         _this.personas = response.data;
       });
     },
-    deletePersonas: function deletePersonas(persona) {
+    editPersona: function editPersona(persona) {
+      this.fillPersona.id = persona.id;
+      this.fillPersona.tipoDocumento = persona.tipoDocumento;
+      this.fillPersona.valorDocumento = persona.valorDocumento;
+      this.fillPersona.nombres = persona.nombres;
+      this.fillPersona.email = persona.email;
+      this.fillPersona.direccion = persona.direccion;
+      this.fillPersona.telefonoDomicilio = persona.telefonoDomicilio;
+      this.fillPersona.telefonoCelular = persona.telefonoCelular;
+      this.fillPersona.tipoPersona = persona.tipoPersona;
+      this.fillPersona.nombreComercial = persona.nombreComercial;
+      this.fillPersona.representanteLegal = persona.representanteLegal;
+      this.fillPersona.estadoPersona = 0;
+      $('#edit').modal('show');
+    },
+    updatePersona: function updatePersona(id) {
       var _this2 = this;
+
+      var url = 'personas/' + id;
+      axios.put(url, this.fillPersona).then(function (response) {
+        _this2.getPersonas();
+
+        _this2.fillPersona = {
+          'id': '',
+          'tipoDocumento': '',
+          'valorDocumento': '',
+          'nombres': '',
+          'email': '',
+          'direccion': '',
+          'telefonoDomicilio': '',
+          'telefonoCelular': '',
+          'tipoPersona': '',
+          'nombreComercial': '',
+          'representanteLegal': '',
+          'estadoPersona': ''
+        };
+        _this2.errors = [];
+        $('#edit').modal('hide');
+        toastr.success('Actualizado  correctamente');
+      })["catch"](function (error) {
+        //this.errors = error.response.data;
+        toastr.error('Ha ocurrido un error, active los erorres (admin)');
+      });
+    },
+    deletePersonas: function deletePersonas(persona) {
+      var _this3 = this;
 
       //alert("eliminar " + persona.nombres);
       var url = 'personas/' + persona.id;
       axios["delete"](url).then(function (response) {
-        _this2.getPersonas();
+        _this3.getPersonas();
 
         toastr.warning('Eliminado correctamente');
       });
     },
     createPersona: function createPersona() {
-      var _this3 = this;
+      var _this4 = this;
 
       var url = 'personas';
+
+      if (this.newtipoPersona === 'Natural') {
+        this.newnombreComercial = 'no';
+        this.newrepresentanteLegal = 'no';
+      }
+
       axios.post(url, {
         tipoDocumento: this.newtipoDocumento,
         valorDocumento: this.newvalorDocumento,
@@ -49775,9 +49839,9 @@ var app = new Vue({
         representanteLegal: this.newrepresentanteLegal,
         estadoPersona: this.newestadoPersona
       }).then(function (response) {
-        _this3.getPersonas();
+        _this4.getPersonas();
 
-        _this3.newtipoDocumento = '', _this3.newvalorDocumento = '', _this3.newnombres = '', _this3.newemail = '', _this3.newdireccion = '', _this3.newtelefonoDomicilio = '', _this3.newtelefonoCelular = '', _this3.newtipoPersona = '', _this3.newnombreComercial = '', _this3.newrepresentanteLegal = '', _this3.newestadoPersona = 0, _this3.errors = [];
+        _this4.newtipoDocumento = '', _this4.newvalorDocumento = '', _this4.newnombres = '', _this4.newemail = '', _this4.newdireccion = '', _this4.newtelefonoDomicilio = '', _this4.newtelefonoCelular = '', _this4.newtipoPersona = '', _this4.newnombreComercial = '', _this4.newrepresentanteLegal = '', _this4.newestadoPersona = 0, _this4.errors = [];
         $('#create').modal('hide');
         toastr.success('Perosna creada correctamente');
       })["catch"](function (error) {

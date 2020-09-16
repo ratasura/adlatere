@@ -62,16 +62,18 @@
                   <span v-for="error in errors" class="text-danger">@{{error}}</span>
                 </div>
                 </div>   
-                <div class="form-group">
-                  <label for="nombreComercial">Nombre Comercial</label>
-                  <input type="text" class="form-control" id="nombreComercial" v-model="newnombreComercial">
-                  <span v-for="error in errors" class="text-danger">@{{error}}</span>
-                </div>
-                <div class="form-group">
-                  <label for="representanteLegal">Representante Legal</label>
-                  <input type="text" class="form-control" id="representanteLegal" v-model="newrepresentanteLegal">
-                  <span v-for="error in errors" class="text-danger">@{{error}}</span>
-                </div>      
+                <div v-if="newtipoPersona ==='Juridica'">
+                  <div id="nombreComercial" class="form-group">
+                    <label for="nombreComercial">Nombre Comercial</label>
+                    <input type="text" class="form-control" id="nombreComercial" v-model="newnombreComercial">
+                    <span v-for="error in errors" class="text-danger">@{{error}}</span>
+                  </div>
+                  <div id="repreentanteLegal" class="form-group">
+                    <label for="representanteLegal">Representante Legal</label>
+                    <input type="text" class="form-control" id="representanteLegal" v-model="newrepresentanteLegal">
+                    <span v-for="error in errors" class="text-danger">@{{error}}</span>
+                  </div>   
+                </div>   
                       
           </div>
           <div class="modal-footer">

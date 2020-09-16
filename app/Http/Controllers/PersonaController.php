@@ -8,33 +8,14 @@ use Illuminate\Http\Request;
 
 class PersonaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         $personas = Persona::get();
         return $personas;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function create()
-    // {
-        // se elimina el create por que a vista la llamamos a traves de modal en el formaulario
-    // }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(PersonaFormRequest $request)
     {
         // $this->validate($request, [
@@ -54,36 +35,16 @@ class PersonaController extends Controller
         return;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+  
+
+   
+    public function update(PersonaFormRequest $request, $id)
     {
-        //
+        Persona::find($id)->update($request->all());
+        return;
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     public function destroy($id)
     {
         $persona= Persona::findOrFail($id);

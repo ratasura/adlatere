@@ -18,6 +18,10 @@ const app = new Vue({
     data: {
         personas: [],
         errors: [],
+        fillPersona: {'id': '', 'tipoDocumento':'','valorDocumento':'','nombres':'',
+        'email':'', 'direccion':'', 'telefonoDomicilio':'', 'telefonoCelular':'',
+        'tipoPersona':'', 'nombreComercial':'','representanteLegal':'','estadoPersona':''
+    },
         newtipoDocumento: '',
         newvalorDocumento: '',
         newnombres : '',
@@ -25,7 +29,7 @@ const app = new Vue({
         newdireccion: '',
         newtelefonoDomicilio: '',
         newtelefonoCelular: '',
-        newtipoPersona: '',
+        newtipoPersona: '', 
         newnombreComercial: '',
         newrepresentanteLegal: '',
         newestadoPersona: 0 // por defecto 0 es activa 1 es desactiva 
@@ -35,9 +39,43 @@ const app = new Vue({
         getPersonas: function(){
             var urlPerssonas = 'personas';
             axios.get(urlPerssonas).then(response=>{
-                this.personas = response.data
-               
+                this.personas = response.data               
                 
+            });
+        },
+
+        editPersona : function (persona){
+            this.fillPersona.id = persona.id;
+            this.fillPersona.tipoDocumento = persona.tipoDocumento;
+            this.fillPersona.valorDocumento = persona.valorDocumento;
+            this.fillPersona.nombres = persona.nombres;
+            this.fillPersona.email = persona.email;
+            this.fillPersona.direccion =  persona.direccion;
+            this.fillPersona.telefonoDomicilio = persona.telefonoDomicilio;
+            this.fillPersona.telefonoCelular = persona.telefonoCelular;
+            this.fillPersona.tipoPersona = persona.tipoPersona;
+            this.fillPersona.nombreComercial = persona.nombreComercial;
+            this.fillPersona.representanteLegal =  persona.representanteLegal;
+            this.fillPersona.estadoPersona = 0;
+
+            $('#edit').modal('show');
+
+        },
+
+        updatePersona(id){
+            var url = 'personas/' + id;
+            
+            axios.put(url, this.fillPersona).then(response => {
+                this.getPersonas();
+                this.fillPersona = {'id': '', 'tipoDocumento':'','valorDocumento':'','nombres':'',
+                'email':'', 'direccion':'', 'telefonoDomicilio':'', 'telefonoCelular':'',
+                'tipoPersona':'', 'nombreComercial':'','representanteLegal':'','estadoPersona':''};
+                this.errors= [];
+                $('#edit').modal('hide');
+                toastr.success('Actualizado  correctamente');
+                }).catch(error => {
+                //this.errors = error.response.data;
+                toastr.error('Ha ocurrido un error, active los erorres (admin)');
             });
         },
 
@@ -51,7 +89,12 @@ const app = new Vue({
         },
 
         createPersona: function(){
-            var url = 'personas';
+            var url = 'personas';              
+            
+            if (this.newtipoPersona==='Natural') {
+                this.newnombreComercial = 'no';
+                this.newrepresentanteLegal = 'no';
+            }
             axios.post(url, {
                 tipoDocumento: this.newtipoDocumento,
                 valorDocumento: this.newvalorDocumento,
@@ -87,6 +130,7 @@ const app = new Vue({
                 toastr.error('Ocurrió un error, revise los campos');
             });
         }
+
 
     },
 });
